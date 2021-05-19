@@ -24,12 +24,11 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Padding(
-                          padding: EdgeInsets.fromLTRB(0,
-                              MediaQuery.of(context).size.height * 0.15, 0, 40),
-                          child: Image.asset(
-                            'assets/assets_logo-colorida-vertical.png',
-                            height: MediaQuery.of(context).size.height * 0.18,
-                          )),
+                          padding: EdgeInsets.fromLTRB(
+                              0,
+                              MediaQuery.of(context).size.height * 0.15,
+                              0,
+                              40)),
                       ComponentsTextField(
                         hintTextField: "E-mail",
                         iconTextField: Icons.person,
