@@ -16,31 +16,31 @@ class _TextFieldPassWordLoginState extends State<TextFieldPassWordLogin> {
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.of(context).size.width * 0.10),
           child: TextField(
-              style: TextStyle(color: Colors.black54),
+              style: TextStyle(color: Color(0xFF979797)),
               obscureText: _hidePassword,
               decoration: InputDecoration(
-                focusColor: Color(0xffff7700),
-                labelStyle: TextStyle(color: Color(0xffff7700)),
+                focusColor: Color(0xFF979797),
+                labelStyle: TextStyle(color: Color(0xFF979797)),
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                  color: Color(0xffff7700),
+                  color: Color(0xFF979797),
                 )),
                 focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
-                  color: Color(0xffff7700),
+                  color: Color(0xFF979797),
                 )),
                 labelText: "Senha",
                 prefixIcon: Icon(
                   Icons.lock,
-                  color: Color(0xffff7700),
+                  color: Color(0xFFEFB029),
                 ),
                 suffixIcon: IconButton(
                   icon: _hidePassword
                       ? Icon(
                           Icons.visibility_off,
-                          color: Colors.black26,
+                          color: Color(0xFF979797),
                         )
-                      : Icon(Icons.visibility, color: Color(0xffff7700)),
+                      : Icon(Icons.visibility, color: Color(0xFF979797)),
                   onPressed: () {
                     _hidePassword = !_hidePassword;
                     setState(() {});

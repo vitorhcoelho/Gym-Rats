@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/login/components/buttonLogin.dart';
-import 'package:gym_rats/modules/login/components/buttonLoginGoogle.dart';
 import 'package:gym_rats/modules/login/components/textField.dart';
 import 'package:gym_rats/modules/login/components/textFieldPassword.dart';
 
-class LoginPage extends StatefulWidget {
+class SigninPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SigninPageState createState() => _SigninPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SigninPageState extends State<SigninPage> {
   bool _hideCheckbox = false;
 
   @override
@@ -21,18 +20,16 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             ListView(
               children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        0, MediaQuery.of(context).size.height * 0.10, 0, 0),
-                    child: Image.asset(
-                      'assets/Gym_rats_fonts.png',
-                      height: MediaQuery.of(context).size.height * 0.20,
-                    )),
                 Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 40)),
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              0,
+                              MediaQuery.of(context).size.height * 0.15,
+                              0,
+                              40)),
                       ComponentsTextField(
                         hintTextField: "E-mail",
                         iconTextField: Icons.person,
@@ -49,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 10.0),
-                        child: ButtonLoginGoogle(
+                        child: ButtonLogin(
                           buttonText: "Entrar com google",
                         ),
                       ),

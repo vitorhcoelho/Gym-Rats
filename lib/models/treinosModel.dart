@@ -18,6 +18,7 @@ class Treino {
     descanso = dados['descanso'];
   }
 
+  // ignore: missing_return
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> dados = new Map<String, dynamic>();
     dados['grupoMuscular'] = this.grupoMuscular;
