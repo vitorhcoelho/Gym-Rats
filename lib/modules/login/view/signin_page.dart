@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/login/components/buttonLogin.dart';
 import 'package:gym_rats/modules/login/components/textField.dart';
 import 'package:gym_rats/modules/login/components/textFieldPassword.dart';
+import 'package:gym_rats/modules/login/view/login_page.dart';
 
 class SigninPage extends StatefulWidget {
   @override
@@ -20,22 +21,35 @@ class _SigninPageState extends State<SigninPage> {
           children: <Widget>[
             ListView(
               children: <Widget>[
+                Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        0, MediaQuery.of(context).size.height * 0.10, 0, 0),
+                    child: Image.asset(
+                      'assets/Gym_rats_fonts.png',
+                      height: MediaQuery.of(context).size.height * 0.20,
+                    )),
                 Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Padding(
-                          padding: EdgeInsets.fromLTRB(
-                              0,
-                              MediaQuery.of(context).size.height * 0.15,
-                              0,
-                              40)),
-                      ComponentsTextField(
-                        hintTextField: "E-mail",
-                        iconTextField: Icons.person,
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                          child: ComponentsTextField(
+                            hintTextField: "Usuário",
+                            iconTextField: Icons.person,
+                          )),
+                      Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                          child: ComponentsTextField(
+                            hintTextField: "E-mail",
+                            iconTextField: Icons.mail,
+                          )),
+                      Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                        child: TextFieldPassWordLogin(),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 20.0),
+                        padding: EdgeInsets.only(top: 10.0),
                         child: TextFieldPassWordLogin(),
                       ),
                       Padding(
@@ -44,19 +58,15 @@ class _SigninPageState extends State<SigninPage> {
                           buttonText: "Entrar",
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 10.0),
-                        child: ButtonLogin(
-                          buttonText: "Entrar com google",
-                        ),
-                      ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.80,
                         child: FlatButton(
-                          onPressed: () {},
-                          child: Text("Não possui uma conta? Criar aqui",
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text("Voltar",
                               style: TextStyle(
-                                color: Color(0xffffffff),
+                                color: Color(0xFFDF9F17),
                               )),
                         ),
                       ),
