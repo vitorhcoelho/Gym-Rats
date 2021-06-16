@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/login/components/buttonLoginGoogle.dart';
-import 'package:gym_rats/modules/login/components/textField.dart';
-import 'package:gym_rats/modules/login/components/textFieldPassword.dart';
 import 'package:gym_rats/modules/login/view/login_service.dart';
 import 'package:gym_rats/modules/user/sign_up/sign_up_page.dart';
 
@@ -195,8 +193,8 @@ class _LoginPageState extends State<LoginPage> {
 
   void _doLogin() {
     if (_formKey.currentState.validate()) {
-      LoginService()
-          .login(_mailInputController.text, _passwordInputController.text);
+      LoginService().login(
+          _mailInputController.text, _passwordInputController.text, context);
     } else {
       print("invalido");
     }

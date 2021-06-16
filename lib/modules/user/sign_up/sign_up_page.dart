@@ -218,8 +218,8 @@ class _SigninPageState extends State<SigninPage> {
 
   void _doSignUp() {
     if (_formKey.currentState.validate()) {
-      SignUpService()
-          .signUp(_mailInputController.text, _passwordInputController.text);
+      SignUpService().signUp(
+          _mailInputController.text, _passwordInputController.text, context);
     } else {
       print("invalido");
     }
