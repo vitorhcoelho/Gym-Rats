@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/login/components/buttonLogin.dart';
 import 'package:gym_rats/modules/login/components/textField.dart';
 import 'package:gym_rats/modules/login/components/textFieldPassword.dart';
-import 'package:gym_rats/modules/login/view/login_page.dart';
+import 'package:gym_rats/modules/user/sign_up/sign_up_service.dart';
+import 'package:http/http.dart' as http;
 
 class SigninPage extends StatefulWidget {
   @override
@@ -10,8 +13,12 @@ class SigninPage extends StatefulWidget {
 }
 
 class _SigninPageState extends State<SigninPage> {
-  bool _hideCheckbox = false;
+  TextEditingController _nameInputController = TextEditingController();
+  TextEditingController _mailInputController = TextEditingController();
+  TextEditingController _passwordInputController = TextEditingController();
+  TextEditingController _confirmInputController = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,7 +35,8 @@ class _SigninPageState extends State<SigninPage> {
                       'assets/Gym_rats_fonts.png',
                       height: MediaQuery.of(context).size.height * 0.20,
                     )),
-                Container(
+                Form(
+                  key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -39,23 +47,50 @@ class _SigninPageState extends State<SigninPage> {
                             iconTextField: Icons.person,
                           )),
                       Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: TextFormField(
+                          controller: _nameInputController,
+                        ),
+                      ),
+                      Padding(
                           padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: ComponentsTextField(
                             hintTextField: "E-mail",
                             iconTextField: Icons.mail,
                           )),
                       Padding(
-                        padding: EdgeInsets.only(top: 10.0),
-                        child: TextFieldPassWordLogin(),
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: TextFormField(
+                          controller: _mailInputController,
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 10.0),
                         child: TextFieldPassWordLogin(),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 50.0),
-                        child: ButtonLogin(
-                          buttonText: "Entrar",
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: TextFormField(
+                          controller: _passwordInputController,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                        child: TextFieldPassWordLogin(),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: TextFormField(
+                          controller: _confirmInputController,
+                        ),
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          _doSignUp();
+                        },
+                        child: Text("Casdastrar"),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
                         ),
                       ),
                       Container(
@@ -79,5 +114,14 @@ class _SigninPageState extends State<SigninPage> {
         ),
       ),
     );
+  }
+
+  void _doSignUp() {
+    if (_formKey.currentState.validate()) {
+      SignUpService()
+          .signUp(_mailInputController.text, _passwordInputController.text);
+    } else {
+      print("invalido");
+    }
   }
 }

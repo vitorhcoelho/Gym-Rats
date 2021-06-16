@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/login/view/login_page.dart';
-
-import 'modules/login/view/signin_page.dart';
+import 'modules/user/sign_up/sign_up_page.dart';
 
 void main() {
   runApp(MyApp());

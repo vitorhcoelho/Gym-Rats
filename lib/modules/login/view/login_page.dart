@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gym_rats/modules/login/components/buttonLogin.dart';
 import 'package:gym_rats/modules/login/components/buttonLoginGoogle.dart';
 import 'package:gym_rats/modules/login/components/textField.dart';
 import 'package:gym_rats/modules/login/components/textFieldPassword.dart';
+import 'package:gym_rats/modules/login/view/login_service.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -10,7 +10,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _hideCheckbox = false;
+  TextEditingController _mailInputController = TextEditingController();
+  TextEditingController _passwordInputController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,8 @@ class _LoginPageState extends State<LoginPage> {
                       'assets/Gym_rats_fonts.png',
                       height: MediaQuery.of(context).size.height * 0.20,
                     )),
-                Container(
+                Form(
+                  key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -38,13 +42,32 @@ class _LoginPageState extends State<LoginPage> {
                         iconTextField: Icons.person,
                       ),
                       Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            hintText: 'E-mail',
+                            icon: Icon(Icons.person, color: Colors.yellow),
+                          ),
+                          controller: _mailInputController,
+                        ),
+                      ),
+                      Padding(
                         padding: EdgeInsets.only(top: 20.0),
                         child: TextFieldPassWordLogin(),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 50.0),
-                        child: ButtonLogin(
-                          buttonText: "Entrar",
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        child: TextFormField(
+                          controller: _passwordInputController,
+                        ),
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          _doLogin();
+                        },
+                        child: Text("Entrar"),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
                         ),
                       ),
                       Padding(
@@ -72,5 +95,14 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  void _doLogin() {
+    if (_formKey.currentState.validate()) {
+      LoginService()
+          .login(_mailInputController.text, _passwordInputController.text);
+    } else {
+      print("invalido");
+    }
   }
 }
