@@ -1,11 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:gym_rats/modules/login/components/buttonLogin.dart';
-import 'package:gym_rats/modules/login/components/textField.dart';
-import 'package:gym_rats/modules/login/components/textFieldPassword.dart';
 import 'package:gym_rats/modules/user/sign_up/sign_up_service.dart';
-import 'package:http/http.dart' as http;
 
 class SigninPage extends StatefulWidget {
   @override
@@ -17,8 +11,9 @@ class _SigninPageState extends State<SigninPage> {
   TextEditingController _mailInputController = TextEditingController();
   TextEditingController _passwordInputController = TextEditingController();
   TextEditingController _confirmInputController = TextEditingController();
-
+  bool _hidePassword = true;
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,60 +36,165 @@ class _SigninPageState extends State<SigninPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: ComponentsTextField(
-                            hintTextField: "Usuário",
-                            iconTextField: Icons.person,
-                          )),
-                      Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextFormField(
-                          controller: _nameInputController,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.10,
+                          ),
+                          child: TextFormField(
+                            style: TextStyle(color: Color(0xFF979797)),
+                            decoration: InputDecoration(
+                              focusColor: Color(0xFF979797),
+                              labelStyle: TextStyle(color: Color(0xFF979797)),
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                color: Color(0xFF979797),
+                              )),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                color: Color(0xFF979797),
+                              )),
+                              labelText: "Usuário",
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Color(0xFFDF9F17),
+                              ),
+                              //suffixIcon: Icon();
+                            ),
+                            controller: _nameInputController,
+                          ),
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: ComponentsTextField(
-                            hintTextField: "E-mail",
-                            iconTextField: Icons.mail,
-                          )),
-                      Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextFormField(
-                          controller: _mailInputController,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.10,
+                          ),
+                          child: TextFormField(
+                            style: TextStyle(color: Color(0xFF979797)),
+                            decoration: InputDecoration(
+                              focusColor: Color(0xFF979797),
+                              labelStyle: TextStyle(color: Color(0xFF979797)),
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                color: Color(0xFF979797),
+                              )),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                color: Color(0xFF979797),
+                              )),
+                              labelText: "E-mail",
+                              prefixIcon: Icon(
+                                Icons.person,
+                                color: Color(0xFFDF9F17),
+                              ),
+                              //suffixIcon: Icon();
+                            ),
+                            controller: _mailInputController,
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 10.0),
-                        child: TextFieldPassWordLogin(),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextFormField(
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.10),
+                        child: TextField(
+                          style: TextStyle(color: Color(0xFF979797)),
+                          obscureText: _hidePassword,
+                          decoration: InputDecoration(
+                            focusColor: Color(0xFF979797),
+                            labelStyle: TextStyle(color: Color(0xFF979797)),
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            labelText: "Senha",
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Color(0xFFEFB029),
+                            ),
+                            suffixIcon: IconButton(
+                              icon: _hidePassword
+                                  ? Icon(
+                                      Icons.visibility_off,
+                                      color: Color(0xFF979797),
+                                    )
+                                  : Icon(Icons.visibility,
+                                      color: Color(0xFF979797)),
+                              onPressed: () {
+                                _hidePassword = !_hidePassword;
+                                setState(() {});
+                              },
+                            ),
+                            //suffixIcon: Icon();
+                          ),
                           controller: _passwordInputController,
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 10.0),
-                        child: TextFieldPassWordLogin(),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextFormField(
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.10),
+                        child: TextField(
+                          style: TextStyle(color: Color(0xFF979797)),
+                          obscureText: _hidePassword,
+                          decoration: InputDecoration(
+                            focusColor: Color(0xFF979797),
+                            labelStyle: TextStyle(color: Color(0xFF979797)),
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            labelText: "Senha",
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Color(0xFFEFB029),
+                            ),
+                            suffixIcon: IconButton(
+                              icon: _hidePassword
+                                  ? Icon(
+                                      Icons.visibility_off,
+                                      color: Color(0xFF979797),
+                                    )
+                                  : Icon(Icons.visibility,
+                                      color: Color(0xFF979797)),
+                              onPressed: () {
+                                _hidePassword = !_hidePassword;
+                                setState(() {});
+                              },
+                            ),
+                            //suffixIcon: Icon();
+                          ),
                           controller: _confirmInputController,
                         ),
                       ),
-                      RaisedButton(
-                        onPressed: () {
-                          _doSignUp();
-                        },
-                        child: Text("Casdastrar"),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
+                      Padding(
+                        padding: EdgeInsets.only(top: 20.0),
+                        // ignore: deprecated_member_use
+                        child: RaisedButton(
+                          onPressed: () {
+                            _doSignUp();
+                          },
+                          child: Text("Casdastrar"),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
                         ),
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.80,
+                        // ignore: deprecated_member_use
                         child: FlatButton(
                           onPressed: () {
                             Navigator.pop(context);
