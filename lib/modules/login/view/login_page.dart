@@ -86,6 +86,13 @@ class _LoginPageState extends State<LoginPage> {
                                 //suffixIcon: Icon();
                               ),
                               controller: _mailInputController,
+                              validator: (value) {
+                                if (!value.contains("@") ||
+                                    (!value.contains(".com"))) {
+                                  return "E-mail invalido";
+                                } else
+                                  return null;
+                              },
                             ),
                           ),
                         ),

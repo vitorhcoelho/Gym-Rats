@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'dart:js';
+import 'package:flutter/material.dart';
+import 'package:gym_rats/main.dart';
 import 'package:gym_rats/modules/routes/routes.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,6 +13,8 @@ class LoginService {
         {"email": email, "password": password, "returnSecureToken": true},
       ),
     );
-    print(response.body);
+    print(response.statusCode);
+
+    if (response.statusCode != 200) {}
   }
 }
