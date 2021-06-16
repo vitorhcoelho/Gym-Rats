@@ -1,10 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/login/view/login_page.dart';
 
 import 'modules/login/view/signin_page.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -14,8 +17,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Gym Rats',
       theme: new ThemeData(scaffoldBackgroundColor: const Color(0xFF242424)),
-      home: MyHomePage(title: 'Gym Rats'),
+      home: AuthenticationWrapper(),
     );
+  }
+}
+
+class AuthenticationWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 
@@ -31,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/login',
+      initialRoute: '/signin',
       routes: {
         '/login': (context) => LoginPage(),
         '/signin': (context) => SigninPage(),

@@ -21,6 +21,12 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  provider: 
+  firebase_auth: 
+  google_sign_in:
+  firebase_core: "0.7.0"
+  custom_radio_grouped_button: any
+  cloud_firestore:
   flutter:
     sdk: flutter
 

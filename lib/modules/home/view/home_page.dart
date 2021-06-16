@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/home/components/training.dart';
-import 'package:gym_rats/modules/home/components/trainingNull.dart';
 import '../../drawer/components/sideMenuDrawer.dart';
 
 class HomePage extends StatelessWidget {
