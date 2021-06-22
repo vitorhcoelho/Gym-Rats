@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/home/components/training.dart';
-import 'package:gym_rats/modules/home/components/trainingNull.dart';
 import '../../drawer/components/sideMenuDrawer.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,10 +11,13 @@ class HomePage extends StatelessWidget {
       backgroundColor: Color(0xFF242424),
       appBar: AppBar(
         actions: [
-          Icon(
-            Icons.notifications,
-            color: Colors.white,
-            size: 25,
+          Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: Icon(
+              Icons.notifications,
+              color: Colors.white,
+              size: 25,
+            ),
           )
         ],
         flexibleSpace: Container(
@@ -37,6 +39,7 @@ class HomePage extends StatelessWidget {
       )),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.all(8.0),
+        // ignore: deprecated_member_use
         child: RaisedButton(
           onPressed: () {},
           color: Color(0xFFDF9F17),

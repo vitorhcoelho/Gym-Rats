@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/login/view/login_page.dart';
 import 'package:gym_rats/modules/routes/routes.dart';
 import 'package:http/http.dart' as http;

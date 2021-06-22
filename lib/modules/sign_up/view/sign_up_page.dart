@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym_rats/modules/user/sign_up/sign_up_service.dart';
+
+import 'sign_up_service.dart';
 
 class SigninPage extends StatefulWidget {
   @override

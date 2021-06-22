@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/login/view/login_page.dart';
-import 'modules/user/sign_up/sign_up_page.dart';
+import 'package:gym_rats/modules/training/view/new_training.dart';
+import 'modules/sign_up/view/sign_up_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,10 +31,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/login',
+      initialRoute: '/newtraining',
       routes: {
+        // ignore: missing_required_param
         '/login': (context) => LoginPage(),
         '/signin': (context) => SigninPage(),
+        '/newtraining': (context) => NewTrainingPage(),
         '/': (context) => HomePage(),
       },
     );

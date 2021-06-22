@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/login/components/buttonLoginGoogle.dart';
 import 'package:gym_rats/modules/login/view/login_service.dart';
-import 'package:gym_rats/modules/user/sign_up/sign_up_page.dart';
+import 'package:gym_rats/modules/sign_up/view/sign_up_page.dart';
 
 class LoginPage extends StatefulWidget {
   final String hintTextField;
@@ -22,16 +22,11 @@ class _LoginPageState extends State<LoginPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  String _hintTextField;
-  IconData _iconTextField;
-
   bool _hidePassword = true;
 
   @override
   void initState() {
     super.initState();
-    _hintTextField = widget.hintTextField;
-    _iconTextField = widget.iconTextField;
   }
 
   @override
