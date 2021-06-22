@@ -54,6 +54,11 @@ class _NewTrainingPageState extends State<NewTrainingPage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+        backgroundColor: Colors.orange,
+      ),
     );
   }
 }
