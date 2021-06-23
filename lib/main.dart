@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/newtraining',
+      initialRoute: '/login',
       routes: {
         // ignore: missing_required_param
         '/login': (context) => LoginPage(),
