@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/login/view/login_page.dart';
 import 'package:gym_rats/modules/training/view/new_training.dart';
+import 'package:gym_rats/modules/training/view/training_form.dart';
+import 'package:gym_rats/providers/trainings.dart';
+import 'package:provider/provider.dart';
 import 'modules/sign_up/view/sign_up_page.dart';
 
 void main() {
@@ -30,15 +33,23 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/newtraining',
-      routes: {
-        // ignore: missing_required_param
-        '/login': (context) => LoginPage(),
-        '/signin': (context) => SigninPage(),
-        '/newtraining': (context) => NewTrainingPage(),
-        '/': (context) => HomePage(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => Trainings(),
+        )
+      ],
+      child: MaterialApp(
+        initialRoute: '/newtraining',
+        routes: {
+          // ignore: missing_required_param
+          '/login': (context) => LoginPage(),
+          '/signin': (context) => SigninPage(),
+          '/newtraining': (context) => NewTrainingPage(),
+          '/training_form': (context) => Training_form(),
+          '/': (context) => HomePage(),
+        },
+      ),
     );
   }
 }
