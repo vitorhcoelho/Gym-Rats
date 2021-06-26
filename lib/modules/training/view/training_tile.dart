@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gym_rats/models/treinosModel.dart';
-import 'package:gym_rats/providers/trainings.dart';
-import 'package:provider/provider.dart';
+import 'package:gym_rats/models/treinos.dart';
 
 class TreinoTile extends StatelessWidget {
-  final Treino treino;
+  final Treinos treino;
 
   const TreinoTile(this.treino);
 
@@ -38,9 +36,9 @@ class TreinoTile extends StatelessWidget {
                             MaterialButton(
                               child: Text('Sim'),
                               onPressed: () {
-                                Provider.of<Trainings>(context, listen: false)
-                                    .remove(treino);
-                                Navigator.of(ctx).pop();
+                                // Provider.of<Treinos>(context, listen: false)
+                                //     .remove(treino);
+                                // Navigator.of(ctx).pop();
                               },
                             ),
                           ],

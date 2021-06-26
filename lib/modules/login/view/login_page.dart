@@ -152,12 +152,6 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 10.0),
-                        child: ButtonLoginGoogle(
-                          buttonText: "Entrar com google",
-                        ),
-                      ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.80,
                         // ignore: deprecated_member_use

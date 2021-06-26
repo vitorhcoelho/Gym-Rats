@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gym_rats/models/treinosModel.dart';
-import 'package:gym_rats/providers/trainings.dart';
-import 'package:provider/provider.dart';
 
 class Training_form extends StatelessWidget {
   final _form = GlobalKey<FormState>();
@@ -15,18 +12,18 @@ class Training_form extends StatelessWidget {
         actions: <Widget>[
           IconButton(
               onPressed: () async {
-                _form.currentState.save();
-                await Provider.of<Trainings>(context, listen: false).put(
-                  Treino(
-                    idTreino: _formData['idTreino'],
-                    nome: _formData['nome'],
-                    grupoMuscular: _formData['grupoMuscular'],
-                    repeticoes: _formData['repeticoes'],
-                    series: _formData['series'],
-                    descanso: _formData['descanso'],
-                  ),
-                );
-                Navigator.of(context).pop();
+                // _form.currentState.save();
+                // await Provider.of<Trainings>(context, listen: false).put(
+                //   Treino(
+                //     idTreino: _formData['idTreino'],
+                //     nome: _formData['nome'],
+                //     grupoMuscular: _formData['grupoMuscular'],
+                //     repeticoes: _formData['repeticoes'],
+                //     series: _formData['series'],
+                //     descanso: _formData['descanso'],
+                //   ),
+                // );
+                // Navigator.of(context).pop();
               },
               icon: Icon(Icons.save))
         ],

@@ -3,8 +3,8 @@ import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/login/view/login_page.dart';
 import 'package:gym_rats/modules/training/view/new_training.dart';
 import 'package:gym_rats/modules/training/view/training_form.dart';
-import 'package:gym_rats/providers/trainings.dart';
-import 'package:provider/provider.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'models/usuariosModel.dart';
 import 'modules/sign_up/view/sign_up_page.dart';
 
 void main() {
@@ -33,12 +33,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (ctx) => Trainings(),
-        )
-      ],
+    return ScopedModel<Usuario>(
+      model: Usuario(),
       child: MaterialApp(
         initialRoute: '/newtraining',
         routes: {

@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gym_rats/models/usuariosModel.dart';
 import 'package:gym_rats/modules/home/view/home_page.dart';
+import 'package:gym_rats/modules/training/view/new_training.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class SideMenuDrawer extends StatelessWidget {
   @override
@@ -57,7 +61,10 @@ class SideMenuDrawer extends StatelessWidget {
               ),
               title: Text('Treinos',
                   style: TextStyle(fontSize: 16, color: Colors.white)),
-              onTap: () => {Navigator.of(context).pop()},
+              onTap: () => {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => NewTrainingPage()))
+              },
               focusColor: Color(0xFFDF9F17),
             ),
             ListTile(
@@ -70,6 +77,25 @@ class SideMenuDrawer extends StatelessWidget {
               onTap: () => {Navigator.of(context).pop()},
               focusColor: Color(0xFFDF9F17),
             ),
+            ScopedModelDescendant<Usuario>(builder: (context, child, model) {
+              if (model.isLoading)
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+
+              return ListTile(
+                leading: Icon(
+                  Icons.logout,
+                  color: Color(0xFFCDCDCD),
+                ),
+                title: Text('Sair',
+                    style: TextStyle(fontSize: 16, color: Colors.white)),
+                onTap: () {
+                  model.signOut(context);
+                },
+                focusColor: Color(0xFFDF9F17),
+              );
+            })
           ],
         ),
       ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gym_rats/models/treinosModel.dart';
 import 'package:gym_rats/modules/drawer/components/sideMenuDrawer.dart';
 import 'package:gym_rats/modules/training/view/training_tile.dart';
-import 'package:gym_rats/providers/trainings.dart';
-import 'package:provider/provider.dart';
 
 class NewTrainingPage extends StatefulWidget {
   @override
@@ -17,7 +16,6 @@ class _NewTrainingPageState extends State<NewTrainingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final Trainings treinos = Provider.of(context);
     return Scaffold(
       drawerScrimColor: Colors.transparent,
       drawer: SideMenuDrawer(),
@@ -38,8 +36,7 @@ class _NewTrainingPageState extends State<NewTrainingPage> {
         ),
       ),
       body: ListView.builder(
-          itemCount: treinos.count,
-          itemBuilder: (ctx, i) => TreinoTile(treinos.byIndex(i))),
+          itemCount: 1, itemBuilder: (ctx, i) => TreinoTile(null)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed('/training_form');
