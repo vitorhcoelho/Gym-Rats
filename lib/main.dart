@@ -36,13 +36,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return ScopedModel<Usuario>(
       model: Usuario(),
       child: MaterialApp(
-        initialRoute: '/newtraining',
+        initialRoute: '/signin',
         routes: {
           // ignore: missing_required_param
           '/login': (context) => LoginPage(),
           '/signin': (context) => SigninPage(),
           '/newtraining': (context) => NewTrainingPage(),
-          '/training_form': (context) => Training_form(),
+          '/training_form': (context) => TrainingForm(),
           '/': (context) => HomePage(),
         },
       ),

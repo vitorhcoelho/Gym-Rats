@@ -9,6 +9,8 @@ class Treinos {
   int descanso;
   int dia;
 
+  Treinos();
+
   Treinos.fromDocument(DocumentSnapshot document) {
     id = document.documentID;
     nome = document.data["nome"];
