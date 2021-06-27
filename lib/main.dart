@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_rats/modules/evolution/view/evolucao.dart';
 import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/login/view/login_page.dart';
 import 'package:gym_rats/modules/training/view/new_training.dart';
@@ -43,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
           '/signin': (context) => SigninPage(),
           '/newtraining': (context) => NewTrainingPage(),
           '/training_form': (context) => TrainingForm(),
+          '/evolucao': (context) => EvolucaoPage(),
           '/': (context) => HomePage(),
         },
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
+import 'package:gym_rats/modules/login/view/login_page.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class SigninPage extends StatefulWidget {
@@ -217,7 +218,13 @@ class _SigninPageState extends State<SigninPage> {
                           // ignore: deprecated_member_use
                           child: FlatButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => LoginPage(
+                                            hintTextField: '',
+                                            iconTextField: null,
+                                          )));
                             },
                             child: Text("Voltar",
                                 style: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
+import 'package:gym_rats/modules/evolution/view/evolucao.dart';
 import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/training/view/new_training.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -19,7 +20,7 @@ class SideMenuDrawer extends StatelessWidget {
               child: DrawerHeader(
                   child: Container(
                     child: Text(
-                      'Usuário',
+                      FirebaseAuth.instance.currentUser().toString(),
                       textAlign: TextAlign.left,
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
@@ -51,7 +52,10 @@ class SideMenuDrawer extends StatelessWidget {
               ),
               title: Text('Evolução',
                   style: TextStyle(fontSize: 16, color: Colors.white)),
-              onTap: () => {Navigator.of(context).pop()},
+              onTap: () => {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => EvolucaoPage()))
+              },
               focusColor: Color(0xFFDF9F17),
             ),
             ListTile(
