@@ -5,6 +5,7 @@ class ButtonLogin extends StatefulWidget {
 
   ButtonLogin({
     @required this.buttonText,
+    Null Function() Function() onPressed,
   });
 
   @override
@@ -28,13 +29,12 @@ class _ButtonLoginState extends State<ButtonLogin> {
           padding: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
           child: Container(
             height: 40.0,
+            // ignore: deprecated_member_use
             child: RaisedButton(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0)),
               padding: EdgeInsets.all(0.0),
-              onPressed: () {
-                Navigator.pushNamed(context, '/signin');
-              },
+              onPressed: () {},
               child: Ink(
                 color: Color(0xFFDF9F17),
                 child: Container(
