@@ -1,30 +1,37 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gym_rats/models/treinos.dart';
-import 'package:gym_rats/models/usuariosModel.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class TreinosModel extends Model {
-  Usuario user;
+  String uid;
   List<Treinos> treinosLista = [];
   bool isLoading = false;
 
-  TreinosModel(this.user) {
-    if (user.isLoggedIn()) _loadTreinos();
+  TreinosModel(user) {
+    this.uid = user.uid;
+    _loadTreinos();
   }
 
   static TreinosModel of(BuildContext context) =>
       ScopedModel.of<TreinosModel>(context);
 
-  void addTreinos(Treinos treinos) {
-    treinosLista.add(treinos);
+  void addTreinos(treino) {
     Firestore.instance
         .collection("users")
-        .document(user.firebaseUser.uid)
+        .document(this.uid)
         .collection("treinos")
-        .add(treinos.toMap())
+        .add(treino)
         .then((doc) {
-      treinos.id = doc.documentID;
+      Treinos t = new Treinos();
+      t.nome = treino["nome"];
+      t.grupoMuscular = treino["grupoMuscular"];
+      t.repeticoes = treino["repeticoes"];
+      t.series = treino["series"];
+      t.descanso = treino["descanso"];
+      t.dia = treino["dia"];
+      t.id = doc.documentID;
+      treinosLista.add(t);
     });
 
     notifyListeners();
@@ -33,7 +40,7 @@ class TreinosModel extends Model {
   void removeTreinos(Treinos treinos) {
     Firestore.instance
         .collection("users")
-        .document(user.firebaseUser.uid)
+        .document(this.uid)
         .collection("treinos")
         .document(treinos.id)
         .delete();
@@ -46,7 +53,7 @@ class TreinosModel extends Model {
   void _loadTreinos() async {
     QuerySnapshot query = await Firestore.instance
         .collection("users")
-        .document(user.firebaseUser.uid)
+        .document(this.uid)
         .collection("treinos")
         .getDocuments();
 

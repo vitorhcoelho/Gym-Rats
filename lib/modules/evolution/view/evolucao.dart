@@ -1,11 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:gym_rats/models/evolucao.dart';
-import 'package:gym_rats/models/treinos.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
 import 'package:gym_rats/modules/drawer/components/sideMenuDrawer.dart';
-import 'package:gym_rats/modules/evolution/view/evolucao_tile.dart';
-import 'package:gym_rats/modules/training/view/training_tile.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class EvolucaoPage extends StatefulWidget {
@@ -55,26 +51,6 @@ class _EvolucaoPageState extends State<EvolucaoPage> {
           child: Icon(Icons.add),
           backgroundColor: Colors.orange,
         ),
-        // body: FutureBuilder<QuerySnapshot>(
-        //     future: Firestore.instance
-        //         .collection("users")
-        //         .document(model.firebaseUser.uid)
-        //         .collection("evolucao")
-        //         .getDocuments(),
-        //     builder: (context, snapshot) {
-        //       if (!snapshot.hasData)
-        //         return Center(
-        //           child: CircularProgressIndicator(),
-        //         );
-        //       else
-        //         return ListView.builder(
-        //             itemCount: snapshot.data.documents.length,
-        //             itemBuilder: (ctx, i) {
-        //               Evolucao evolucao =
-        //                   Evolucao.fromDocument(snapshot.data.documents[i]);
-        //               return EvolucaoTile(evolucao);
-        //             });
-        //     }),
       );
     }));
   }

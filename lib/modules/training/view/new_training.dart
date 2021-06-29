@@ -19,7 +19,8 @@ class _NewTrainingPageState extends State<NewTrainingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<Usuario>(builder: (context, child, model) {
+    return Scaffold(
+        body: ScopedModelDescendant<Usuario>(builder: (context, child, model) {
       if (model.isLoading)
         return Center(
           child: CircularProgressIndicator(),
@@ -73,6 +74,6 @@ class _NewTrainingPageState extends State<NewTrainingPage> {
                     });
             }),
       );
-    });
+    }));
   }
 }

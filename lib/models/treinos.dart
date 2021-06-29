@@ -4,10 +4,10 @@ class Treinos {
   String id;
   String nome;
   String grupoMuscular;
-  int repeticoes;
-  int series;
-  int descanso;
-  int dia;
+  String repeticoes;
+  String series;
+  String descanso;
+  String dia;
 
   Treinos();
 
@@ -19,16 +19,5 @@ class Treinos {
     series = document.data["series"];
     descanso = document.data["descanso"];
     dia = document.data["dia"];
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      "nome": nome,
-      "grupoMuscular": grupoMuscular,
-      "repeticoes": repeticoes,
-      "series": series,
-      "descanso": descanso,
-      "dia": dia
-    };
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gym_rats/models/evolucao.dart';
 import 'package:gym_rats/models/evolucaoModel.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
 import 'package:scoped_model/scoped_model.dart';
