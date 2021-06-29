@@ -9,8 +9,7 @@ class EvolucaoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Text(
-          evolucao.data.day.toString() + '/' + evolucao.data.month.toString()),
+      leading: Text(evolucao.data),
       title: Text(evolucao.descricao),
       subtitle: Text(evolucao.peso.toString()),
       trailing: Container(
@@ -24,7 +23,7 @@ class EvolucaoTile extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (ctx) => AlertDialog(
-                          title: Text('Excluir Treino'),
+                          title: Text('Excluir Evolução'),
                           content: Text(
                               'Tem certeza que deseja excluir a evolução?'),
                           actions: <Widget>[

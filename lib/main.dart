@@ -6,6 +6,7 @@ import 'package:gym_rats/modules/training/view/new_training.dart';
 import 'package:gym_rats/modules/training/view/training_form.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'models/usuariosModel.dart';
+import 'modules/evolution/view/evolucao_cadastro.dart';
 import 'modules/sign_up/view/sign_up_page.dart';
 
 void main() {
@@ -37,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return ScopedModel<Usuario>(
       model: Usuario(),
       child: MaterialApp(
-        initialRoute: '/signin',
+        initialRoute: '/login',
         routes: {
           // ignore: missing_required_param
           '/login': (context) => LoginPage(),
@@ -45,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           '/newtraining': (context) => NewTrainingPage(),
           '/training_form': (context) => TrainingForm(),
           '/evolucao': (context) => EvolucaoPage(),
+          '/evolucao_cadastro': (context) => EvolucaoForm(),
           '/': (context) => HomePage(),
         },
       ),

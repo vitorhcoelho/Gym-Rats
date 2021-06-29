@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gym_rats/models/evolucao.dart';
 import 'package:gym_rats/models/treinos.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
 import 'package:gym_rats/modules/drawer/components/sideMenuDrawer.dart';
+import 'package:gym_rats/modules/evolution/view/evolucao_tile.dart';
 import 'package:gym_rats/modules/training/view/training_tile.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -19,7 +21,8 @@ class _EvolucaoPageState extends State<EvolucaoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<Usuario>(builder: (context, child, model) {
+    return Scaffold(
+        body: ScopedModelDescendant<Usuario>(builder: (context, child, model) {
       if (model.isLoading)
         return Center(
           child: CircularProgressIndicator(),
@@ -47,32 +50,32 @@ class _EvolucaoPageState extends State<EvolucaoPage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.of(context).pushNamed('/training_form');
+            Navigator.of(context).pushNamed('/evolucao_cadastro');
           },
           child: Icon(Icons.add),
           backgroundColor: Colors.orange,
         ),
-        body: FutureBuilder<QuerySnapshot>(
-            future: Firestore.instance
-                .collection("users")
-                .document(model.firebaseUser.uid)
-                .collection("evolucao")
-                .getDocuments(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData)
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              else
-                return ListView.builder(
-                    itemCount: snapshot.data.documents.length,
-                    itemBuilder: (ctx, i) {
-                      Treinos treinos =
-                          Treinos.fromDocument(snapshot.data.documents[i]);
-                      return TreinoTile(treinos);
-                    });
-            }),
+        // body: FutureBuilder<QuerySnapshot>(
+        //     future: Firestore.instance
+        //         .collection("users")
+        //         .document(model.firebaseUser.uid)
+        //         .collection("evolucao")
+        //         .getDocuments(),
+        //     builder: (context, snapshot) {
+        //       if (!snapshot.hasData)
+        //         return Center(
+        //           child: CircularProgressIndicator(),
+        //         );
+        //       else
+        //         return ListView.builder(
+        //             itemCount: snapshot.data.documents.length,
+        //             itemBuilder: (ctx, i) {
+        //               Evolucao evolucao =
+        //                   Evolucao.fromDocument(snapshot.data.documents[i]);
+        //               return EvolucaoTile(evolucao);
+        //             });
+        //     }),
       );
-    });
+    }));
   }
 }

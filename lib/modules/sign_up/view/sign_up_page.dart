@@ -218,6 +218,7 @@ class _SigninPageState extends State<SigninPage> {
                           // ignore: deprecated_member_use
                           child: FlatButton(
                             onPressed: () {
+                              Navigator.of(context).pop();
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(

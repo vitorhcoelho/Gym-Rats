@@ -6,12 +6,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 class TreinosModel extends Model {
   Usuario user;
-
   List<Treinos> treinosLista = [];
-
-  String couponCode;
-  int discountPercentage = 0;
-
   bool isLoading = false;
 
   TreinosModel(this.user) {
