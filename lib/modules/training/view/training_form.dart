@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gym_rats/models/treinos.dart';
 import 'package:gym_rats/models/treinosModel.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -11,14 +10,13 @@ class TrainingForm extends StatefulWidget {
 
 class _TreinoFormState extends State<TrainingForm> {
   TextEditingController _nomeInputController = TextEditingController();
-  TextEditingController _grupoMuscularInputController = TextEditingController();
   TextEditingController _repeticoesInputController = TextEditingController();
   TextEditingController _seriesInputController = TextEditingController();
   TextEditingController _descansoInputController = TextEditingController();
-  TextEditingController _diaInputController = TextEditingController();
+  String grupoMuscular;
+  String diaSemana;
 
   final _form = GlobalKey<FormState>();
-  final Map<String, Object> _formData = {};
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +37,11 @@ class _TreinoFormState extends State<TrainingForm> {
                     onPressed: () async {
                       Map<String, dynamic> treino = {
                         "nome": _nomeInputController.text,
-                        "grupoMuscular": _grupoMuscularInputController.text,
+                        "grupoMuscular": grupoMuscular,
                         "repeticoes": _repeticoesInputController.text,
                         "series": _seriesInputController.text,
                         "descanso": _descansoInputController.text,
-                        "dia": _diaInputController.text,
+                        "dia": diaSemana,
                       };
                       model.addTreinos(treino);
                       Navigator.of(context).pop();
@@ -61,10 +59,28 @@ class _TreinoFormState extends State<TrainingForm> {
                         decoration: InputDecoration(labelText: 'Exercício'),
                         controller: _nomeInputController,
                       ),
-                      TextFormField(
-                        decoration:
-                            InputDecoration(labelText: 'Grupo Muscular'),
-                        controller: _grupoMuscularInputController,
+                      DropdownButton<String>(
+                        value: grupoMuscular,
+                        icon: const Icon(Icons.arrow_downward),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            grupoMuscular = newValue;
+                          });
+                        },
+                        items: model.gruposMuscularesLista
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                       TextFormField(
                         decoration: InputDecoration(labelText: 'Repeticoes'),
@@ -82,10 +98,28 @@ class _TreinoFormState extends State<TrainingForm> {
                         keyboardType: TextInputType.number,
                         controller: _descansoInputController,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Dia da semana'),
-                        keyboardType: TextInputType.number,
-                        controller: _diaInputController,
+                      DropdownButton<String>(
+                        value: diaSemana,
+                        icon: const Icon(Icons.arrow_downward),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.deepPurpleAccent,
+                        ),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            diaSemana = newValue;
+                          });
+                        },
+                        items: model.diasSemana
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                     ],
                   ),
