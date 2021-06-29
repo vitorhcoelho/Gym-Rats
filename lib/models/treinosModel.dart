@@ -3,14 +3,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:gym_rats/models/treinos.dart';
 import 'package:scoped_model/scoped_model.dart';
 
+import 'diaSemana.dart';
+import 'gruposMusculares.dart';
+
 class TreinosModel extends Model {
   String uid;
   List<Treinos> treinosLista = [];
+  List<String> gruposMuscularesLista = [];
+  List<String> diasSemana = [];
   bool isLoading = false;
 
   TreinosModel(user) {
     this.uid = user.uid;
     _loadTreinos();
+    _loadGruposMusculares();
+    _loadDiaSemana();
   }
 
   static TreinosModel of(BuildContext context) =>
@@ -59,6 +66,27 @@ class TreinosModel extends Model {
 
     treinosLista =
         query.documents.map((doc) => Treinos.fromDocument(doc)).toList();
+
+    notifyListeners();
+  }
+
+  void _loadGruposMusculares() async {
+    QuerySnapshot query =
+        await Firestore.instance.collection("grupoMuscular").getDocuments();
+
+    gruposMuscularesLista = query.documents
+        .map((doc) => GruposMusculares.fromDocument(doc).nome)
+        .toList();
+
+    notifyListeners();
+  }
+
+  void _loadDiaSemana() async {
+    QuerySnapshot query =
+        await Firestore.instance.collection("diaDaSemana").getDocuments();
+
+    diasSemana =
+        query.documents.map((doc) => DiaSemana.fromDocument(doc).nome).toList();
 
     notifyListeners();
   }
