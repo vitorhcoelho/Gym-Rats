@@ -32,16 +32,6 @@ class _NewTrainingPageState extends State<NewTrainingPage> {
         backgroundColor: Color(0xFF242424),
         appBar: AppBar(
           title: Text('Treinos'),
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 10),
-              child: Icon(
-                Icons.notifications,
-                color: Colors.white,
-                size: 25,
-              ),
-            )
-          ],
           flexibleSpace: Container(
             decoration: BoxDecoration(color: Color(0xFFDF9F17)),
           ),
@@ -51,7 +41,7 @@ class _NewTrainingPageState extends State<NewTrainingPage> {
             Navigator.of(context).pushNamed('/training_form');
           },
           child: Icon(Icons.add),
-          backgroundColor: Colors.orange,
+          backgroundColor: Color(0xFFDF9F17),
         ),
         body: FutureBuilder<QuerySnapshot>(
             future: Firestore.instance

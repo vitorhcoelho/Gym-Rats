@@ -29,21 +29,12 @@ class _EvolucaoFormState extends State<EvolucaoForm> {
 
           return Scaffold(
             key: _scaffoldKey,
+            backgroundColor: Color(0xFF242424),
             appBar: AppBar(
               title: Text('Cadastrar Evolução'),
-              actions: <Widget>[
-                IconButton(
-                    onPressed: () async {
-                      Map<String, dynamic> evolucao = {
-                        "data": _dataInputController.text,
-                        "peso": _pesoInputController.text,
-                        "descricao": _descricaoInputController.text
-                      };
-                      model.addEvolucao(evolucao);
-                      Navigator.of(context).pop();
-                    },
-                    icon: Icon(Icons.save))
-              ],
+              flexibleSpace: Container(
+                decoration: BoxDecoration(color: Color(0xFFDF9F17)),
+              ),
             ),
             body: Padding(
                 padding: EdgeInsets.all(15),
@@ -52,16 +43,91 @@ class _EvolucaoFormState extends State<EvolucaoForm> {
                   child: Column(
                     children: <Widget>[
                       TextFormField(
-                          decoration: InputDecoration(labelText: 'Data'),
+                          style: TextStyle(color: Color(0xFF979797)),
+                          decoration: InputDecoration(
+                            focusColor: Color(0xFF979797),
+                            labelStyle: TextStyle(color: Color(0xFF979797)),
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            labelText: "Data",
+                            prefixIcon: Icon(
+                              Icons.date_range,
+                              color: Color(0xFFEFB029),
+                            ),
+                          ),
+                          keyboardType: TextInputType.number,
                           controller: _dataInputController),
                       TextFormField(
-                          decoration: InputDecoration(labelText: 'Peso'),
+                          style: TextStyle(color: Color(0xFF979797)),
+                          decoration: InputDecoration(
+                            focusColor: Color(0xFF979797),
+                            labelStyle: TextStyle(color: Color(0xFF979797)),
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            labelText: "Peso",
+                            prefixIcon: Icon(
+                              Icons.analytics_outlined,
+                              color: Color(0xFFEFB029),
+                            ),
+                          ),
                           keyboardType: TextInputType.number,
                           controller: _pesoInputController),
                       TextFormField(
+                          style: TextStyle(color: Color(0xFF979797)),
                           decoration: InputDecoration(
-                              labelText: 'Comentário sobre o período'),
+                            focusColor: Color(0xFF979797),
+                            labelStyle: TextStyle(color: Color(0xFF979797)),
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                              color: Color(0xFF979797),
+                            )),
+                            labelText: "Comentário sobre esse período",
+                            prefixIcon: Icon(
+                              Icons.chat,
+                              color: Color(0xFFEFB029),
+                            ),
+                          ),
                           controller: _descricaoInputController),
+                      SizedBox(
+                        height: 16.0,
+                      ),
+                      SizedBox(
+                        width: 440,
+                        // ignore: deprecated_member_use
+                        child: RaisedButton(
+                          child: Text(
+                            "Salvar",
+                            style: TextStyle(fontSize: 18.0),
+                          ),
+                          textColor: Colors.white,
+                          color: Color(0xFFDF9F17),
+                          onPressed: () async {
+                            Map<String, dynamic> evolucao = {
+                              "data": _dataInputController.text,
+                              "peso": _pesoInputController.text,
+                              "descricao": _descricaoInputController.text
+                            };
+                            model.addEvolucao(evolucao);
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      )
                     ],
                   ),
                 )),

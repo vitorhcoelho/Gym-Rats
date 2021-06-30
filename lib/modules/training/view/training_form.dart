@@ -17,6 +17,8 @@ class _TreinoFormState extends State<TrainingForm> {
   String diaSemana;
 
   final _form = GlobalKey<FormState>();
+  // ignore: unused_field
+  final Map<String, Object> _formData = {};
 
   @override
   Widget build(BuildContext context) {
@@ -30,34 +32,37 @@ class _TreinoFormState extends State<TrainingForm> {
             );
 
           return Scaffold(
+            backgroundColor: Color(0xFF242424),
             appBar: AppBar(
               title: Text('Cadastrar treino'),
-              actions: <Widget>[
-                IconButton(
-                    onPressed: () async {
-                      Map<String, dynamic> treino = {
-                        "nome": _nomeInputController.text,
-                        "grupoMuscular": grupoMuscular,
-                        "repeticoes": _repeticoesInputController.text,
-                        "series": _seriesInputController.text,
-                        "descanso": _descansoInputController.text,
-                        "dia": diaSemana,
-                      };
-                      model.addTreinos(treino);
-                      Navigator.of(context).pop();
-                    },
-                    icon: Icon(Icons.save)),
-              ],
+              flexibleSpace: Container(
+                decoration: BoxDecoration(color: Color(0xFFDF9F17)),
+              ),
             ),
             body: Padding(
-                padding: EdgeInsets.all(15),
-                child: Form(
-                  key: _form,
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Exercício'),
-                        controller: _nomeInputController,
+              padding: EdgeInsets.all(15),
+              child: Form(
+                key: _form,
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      style: TextStyle(color: Color(0xFF979797)),
+                      decoration: InputDecoration(
+                        focusColor: Color(0xFF979797),
+                        labelStyle: TextStyle(color: Color(0xFF979797)),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        labelText: "Exercício",
+                        prefixIcon: Icon(
+                          Icons.fitness_center,
+                          color: Color(0xFFEFB029),
+                        ),
                       ),
                       DropdownButton<String>(
                         value: grupoMuscular,
@@ -82,21 +87,70 @@ class _TreinoFormState extends State<TrainingForm> {
                           );
                         }).toList(),
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Repeticoes'),
-                        keyboardType: TextInputType.number,
-                        controller: _repeticoesInputController,
+                      controller: _grupoMuscularInputController,
+                    ),
+                    TextFormField(
+                      style: TextStyle(color: Color(0xFF979797)),
+                      decoration: InputDecoration(
+                        focusColor: Color(0xFF979797),
+                        labelStyle: TextStyle(color: Color(0xFF979797)),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        labelText: "Repetições",
+                        prefixIcon: Icon(
+                          Icons.repeat,
+                          color: Color(0xFFEFB029),
+                        ),
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Series'),
-                        keyboardType: TextInputType.number,
-                        controller: _seriesInputController,
+                      keyboardType: TextInputType.number,
+                      controller: _repeticoesInputController,
+                    ),
+                    TextFormField(
+                      style: TextStyle(color: Color(0xFF979797)),
+                      decoration: InputDecoration(
+                        focusColor: Color(0xFF979797),
+                        labelStyle: TextStyle(color: Color(0xFF979797)),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        labelText: "Séries",
+                        prefixIcon: Icon(
+                          Icons.grading_outlined,
+                          color: Color(0xFFEFB029),
+                        ),
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            labelText: 'Tempo de descanso em segundos'),
-                        keyboardType: TextInputType.number,
-                        controller: _descansoInputController,
+                      keyboardType: TextInputType.number,
+                      controller: _seriesInputController,
+                    ),
+                    TextFormField(
+                      style: TextStyle(color: Color(0xFF979797)),
+                      decoration: InputDecoration(
+                        focusColor: Color(0xFF979797),
+                        labelStyle: TextStyle(color: Color(0xFF979797)),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        labelText: "Tempo de descanso (em segundos)",
+                        prefixIcon: Icon(
+                          Icons.access_time,
+                          color: Color(0xFFEFB029),
+                        ),
                       ),
                       DropdownButton<String>(
                         value: diaSemana,
@@ -121,9 +175,40 @@ class _TreinoFormState extends State<TrainingForm> {
                           );
                         }).toList(),
                       ),
-                    ],
-                  ),
-                )),
+                      keyboardType: TextInputType.number,
+                      controller: _diaInputController,
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    SizedBox(
+                      width: 440,
+                      // ignore: deprecated_member_use
+                      child: RaisedButton(
+                        child: Text(
+                          "Salvar",
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        textColor: Colors.white,
+                        color: Color(0xFFDF9F17),
+                        onPressed: () async {
+                          Map<String, dynamic> treino = {
+                            "nome": _nomeInputController.text,
+                            "grupoMuscular": _grupoMuscularInputController.text,
+                            "repeticoes": _repeticoesInputController.text,
+                            "series": _seriesInputController.text,
+                            "descanso": _descansoInputController.text,
+                            "dia": _diaInputController.text,
+                          };
+                          model.addTreinos(treino);
+                          Navigator.of(context).pushNamed('/newtraining');
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           );
         }));
   }
