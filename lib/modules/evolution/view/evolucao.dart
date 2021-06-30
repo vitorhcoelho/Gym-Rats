@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
 import 'package:gym_rats/modules/drawer/components/sideMenuDrawer.dart';

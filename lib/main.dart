@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
           '/training_form': (context) => TrainingForm(),
           '/evolucao': (context) => EvolucaoPage(),
           '/evolucao_cadastro': (context) => EvolucaoForm(),
-          '/': (context) => HomePage(),
+          '/home': (context) => HomePage(),
         },
       ),
     );
