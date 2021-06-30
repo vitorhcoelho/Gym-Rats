@@ -10,11 +10,11 @@ class TrainingForm extends StatefulWidget {
 
 class _TreinoFormState extends State<TrainingForm> {
   TextEditingController _nomeInputController = TextEditingController();
-  TextEditingController _grupoMuscularInputController = TextEditingController();
   TextEditingController _repeticoesInputController = TextEditingController();
   TextEditingController _seriesInputController = TextEditingController();
   TextEditingController _descansoInputController = TextEditingController();
-  TextEditingController _diaInputController = TextEditingController();
+  String grupoMuscular;
+  String diaSemana;
 
   final _form = GlobalKey<FormState>();
   // ignore: unused_field
@@ -64,26 +64,28 @@ class _TreinoFormState extends State<TrainingForm> {
                           color: Color(0xFFEFB029),
                         ),
                       ),
-                      controller: _nomeInputController,
-                    ),
-                    TextFormField(
-                      style: TextStyle(color: Color(0xFF979797)),
-                      decoration: InputDecoration(
-                        focusColor: Color(0xFF979797),
-                        labelStyle: TextStyle(color: Color(0xFF979797)),
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                          color: Color(0xFF979797),
-                        )),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                          color: Color(0xFF979797),
-                        )),
-                        labelText: "Grupo Muscular",
-                        prefixIcon: Icon(
-                          Icons.accessibility_new,
-                          color: Color(0xFFEFB029),
+                      DropdownButton<String>(
+                        value: grupoMuscular,
+                        icon: const Icon(Icons.arrow_downward),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.deepPurpleAccent,
                         ),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            grupoMuscular = newValue;
+                          });
+                        },
+                        items: model.gruposMuscularesLista
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                       controller: _grupoMuscularInputController,
                     ),
@@ -150,27 +152,28 @@ class _TreinoFormState extends State<TrainingForm> {
                           color: Color(0xFFEFB029),
                         ),
                       ),
-                      keyboardType: TextInputType.number,
-                      controller: _descansoInputController,
-                    ),
-                    TextFormField(
-                      style: TextStyle(color: Color(0xFF979797)),
-                      decoration: InputDecoration(
-                        focusColor: Color(0xFF979797),
-                        labelStyle: TextStyle(color: Color(0xFF979797)),
-                        enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                          color: Color(0xFF979797),
-                        )),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                          color: Color(0xFF979797),
-                        )),
-                        labelText: "Dia da semana",
-                        prefixIcon: Icon(
-                          Icons.date_range,
-                          color: Color(0xFFEFB029),
+                      DropdownButton<String>(
+                        value: diaSemana,
+                        icon: const Icon(Icons.arrow_downward),
+                        iconSize: 24,
+                        elevation: 16,
+                        style: const TextStyle(color: Colors.deepPurple),
+                        underline: Container(
+                          height: 2,
+                          color: Colors.deepPurpleAccent,
                         ),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            diaSemana = newValue;
+                          });
+                        },
+                        items: model.diasSemana
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
                       ),
                       keyboardType: TextInputType.number,
                       controller: _diaInputController,
