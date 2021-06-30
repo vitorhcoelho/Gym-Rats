@@ -38,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return ScopedModel<Usuario>(
       model: Usuario(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         initialRoute: '/login',
         routes: {
           // ignore: missing_required_param

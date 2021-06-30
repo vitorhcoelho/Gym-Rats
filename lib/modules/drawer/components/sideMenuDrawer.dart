@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
 import 'package:gym_rats/modules/evolution/view/evolucao.dart';
