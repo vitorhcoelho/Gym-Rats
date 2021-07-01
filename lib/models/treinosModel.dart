@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gym_rats/models/treinos.dart';
+import 'package:mobx/mobx.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'diaSemana.dart';
@@ -13,8 +14,10 @@ class TreinosModel extends Model {
   List<String> gruposMuscularesLista = [];
   List<String> diasSemana = [];
   List<Treinos> treinoDoDia = [];
-  List<Item> itens = [];
   bool isLoading = false;
+
+  @observable
+  var itens = ObservableList<Item>();
 
   TreinosModel(user) {
     this.uid = user.uid;
@@ -115,4 +118,7 @@ class TreinosModel extends Model {
               ' repetições');
     });
   }
+
+  @action
+  void expandItem(index, isExpanded) => {itens[index].isExpanded = !isExpanded};
 }
