@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Gym Rats',
       theme: new ThemeData(scaffoldBackgroundColor: const Color(0xFF242424)),
       home: MyHomePage(title: 'Gym Rats'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -38,7 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return ScopedModel<Usuario>(
       model: Usuario(),
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
         initialRoute: '/login',
         routes: {
           // ignore: missing_required_param
