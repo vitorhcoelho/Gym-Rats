@@ -46,6 +46,7 @@ class _TreinoFormState extends State<TrainingForm> {
                 child: Column(
                   children: <Widget>[
                     TextFormField(
+                      controller: _nomeInputController,
                       style: TextStyle(color: Color(0xFF979797)),
                       decoration: InputDecoration(
                         focusColor: Color(0xFF979797),
@@ -150,6 +151,28 @@ class _TreinoFormState extends State<TrainingForm> {
                       keyboardType: TextInputType.number,
                       controller: _seriesInputController,
                     ),
+                    TextFormField(
+                      style: TextStyle(color: Color(0xFF979797)),
+                      decoration: InputDecoration(
+                        focusColor: Color(0xFF979797),
+                        labelStyle: TextStyle(color: Color(0xFF979797)),
+                        enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                          color: Color(0xFF979797),
+                        )),
+                        labelText: "Descanso",
+                        prefixIcon: Icon(
+                          Icons.grading_outlined,
+                          color: Color(0xFFDF9F17),
+                        ),
+                      ),
+                      keyboardType: TextInputType.number,
+                      controller: _descansoInputController,
+                    ),
                     Stack(
                       children: <Widget>[
                         Container(
@@ -212,6 +235,9 @@ class _TreinoFormState extends State<TrainingForm> {
                             "repeticoes": _repeticoesInputController.text,
                             "series": _seriesInputController.text,
                             "descanso": _descansoInputController.text,
+                            "grupoMuscular": grupoMuscular,
+                            "dia": diaSemana,
+                            "quantidade": 0,
                           };
                           model.addTreinos(treino);
                           Navigator.of(context).pushNamed('/newtraining');

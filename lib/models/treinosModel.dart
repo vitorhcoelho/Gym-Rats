@@ -20,6 +20,8 @@ class TreinosModel extends Model {
     _loadDiaSemana();
   }
 
+  get firebaseUser => null;
+
   static TreinosModel of(BuildContext context) =>
       ScopedModel.of<TreinosModel>(context);
 
@@ -37,6 +39,7 @@ class TreinosModel extends Model {
       t.series = treino["series"];
       t.descanso = treino["descanso"];
       t.dia = treino["dia"];
+      t.quantidade = treino["quantidade"];
       t.id = doc.documentID;
       treinosLista.add(t);
     });
@@ -88,6 +91,17 @@ class TreinosModel extends Model {
     diasSemana =
         query.documents.map((doc) => DiaSemana.fromDocument(doc).nome).toList();
 
+    notifyListeners();
+  }
+
+  void concluiTreino(treino) {
+    treino.quantidade++;
+    Firestore.instance
+        .collection("users")
+        .document(this.uid)
+        .collection("treinos")
+        .document(treino.id)
+        .updateData({'quantidade': treino.quantidade});
     notifyListeners();
   }
 }

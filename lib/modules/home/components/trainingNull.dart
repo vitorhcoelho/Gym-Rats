@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class TrainingNull extends StatelessWidget {
+  final String mensagem;
+
+  const TrainingNull(this.mensagem);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +30,7 @@ class TrainingNull extends StatelessWidget {
                 ],
               ),
               child: Text(
-                "Nada de treinos por hoje...",
+                mensagem,
                 textAlign: TextAlign.left,
                 style: TextStyle(fontSize: 16, color: Colors.white),
               ),

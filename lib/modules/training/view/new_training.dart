@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gym_rats/models/treinos.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
 import 'package:gym_rats/modules/drawer/components/sideMenuDrawer.dart';
+import 'package:gym_rats/modules/home/components/trainingNull.dart';
 import 'package:gym_rats/modules/training/view/training_tile.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -50,17 +51,16 @@ class _NewTrainingPageState extends State<NewTrainingPage> {
                 .collection("treinos")
                 .getDocuments(),
             builder: (context, snapshot) {
-              if (!snapshot.hasData)
+              if (snapshot.data == null || snapshot.data.documents.length == 0)
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: TrainingNull('Sem treinos cadastrados!'),
                 );
               else
                 return ListView.builder(
                     itemCount: snapshot.data.documents.length,
                     itemBuilder: (ctx, i) {
-                      Treinos treinos =
-                          Treinos.fromDocument(snapshot.data.documents[i]);
-                      return TreinoTile(treinos);
+                      return TreinoTile(
+                          Treinos.fromDocument(snapshot.data.documents[i]));
                     });
             }),
       );

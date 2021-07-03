@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
+import 'package:gym_rats/modules/dashboard/view/dashboard.dart';
 import 'package:gym_rats/modules/evolution/view/evolucao.dart';
 import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/training/view/new_training.dart';
@@ -48,7 +49,8 @@ class SideMenuDrawer extends StatelessWidget {
                 ),
                 title: Text('Home',
                     style: TextStyle(fontSize: 16, color: Colors.white)),
-                onTap: () => HomePage(),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage())),
                 focusColor: Color(0xFFDF9F17),
               ),
               ListTile(
@@ -84,9 +86,12 @@ class SideMenuDrawer extends StatelessWidget {
                   Icons.settings,
                   color: Color(0xFFCDCDCD),
                 ),
-                title: Text('Configurações',
+                title: Text('Dashboard',
                     style: TextStyle(fontSize: 16, color: Colors.white)),
-                onTap: () => {Navigator.of(context).pop()},
+                onTap: () => {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DashboardPage()))
+                },
                 focusColor: Color(0xFFDF9F17),
               ),
               ScopedModelDescendant<Usuario>(builder: (context, child, model) {

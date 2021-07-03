@@ -198,6 +198,7 @@ class _SigninPageState extends State<SigninPage> {
                                 Map<String, dynamic> userData = {
                                   "name": _nameInputController.text,
                                   "email": _mailInputController.text,
+                                  "peso": 0
                                 };
 
                                 model.signUp(

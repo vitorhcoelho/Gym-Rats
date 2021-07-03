@@ -4,6 +4,7 @@ import 'package:gym_rats/models/evolucao.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class EvolucaoModel extends Model {
+  String mensagem;
   List<Evolucao> evolucaoLista = [];
   bool isLoading = false;
   String uid;
@@ -11,6 +12,7 @@ class EvolucaoModel extends Model {
   EvolucaoModel(user) {
     this.uid = user.uid;
     _loadEvolucao();
+    _procuraMeta();
   }
 
   static EvolucaoModel of(BuildContext context) =>
@@ -30,6 +32,30 @@ class EvolucaoModel extends Model {
       e.id = doc.documentID;
       evolucaoLista.add(e);
     });
+    Firestore.instance
+        .collection("users")
+        .document(this.uid)
+        .updateData({'peso': double.parse(evolucao['peso'])});
+    notifyListeners();
+  }
+
+  void addMeta(meta) {
+    var tipoMeta;
+    Firestore.instance
+        .collection("users")
+        .document(this.uid)
+        .get()
+        .then((value) => {
+              if (value['peso'] > meta)
+                {tipoMeta = 'perda'}
+              else
+                {tipoMeta = 'ganho'}
+            });
+
+    Firestore.instance
+        .collection("users")
+        .document(this.uid)
+        .updateData({'meta': meta, 'tipo_meta': tipoMeta});
     notifyListeners();
   }
 
@@ -57,5 +83,37 @@ class EvolucaoModel extends Model {
         query.documents.map((doc) => Evolucao.fromDocument(doc)).toList();
 
     notifyListeners();
+  }
+
+  void _procuraMeta() {
+    var peso, meta, tipo;
+    Firestore.instance
+        .collection("users")
+        .document(this.uid)
+        .get()
+        .then((value) {
+      peso = value['peso'];
+      meta = value['meta'];
+      tipo = value['tipo_meta'];
+      if (tipo == 'ganho') {
+        if (meta > peso)
+          mensagem = 'Ainda falta ganhar ' +
+              (meta - peso).toString() +
+              'kg para você alcançar sua meta';
+        else
+          mensagem = 'Você atingiu sua meta e está pesando ' +
+              (peso).toString() +
+              'kg!!';
+      } else {
+        if (peso > meta)
+          mensagem = 'Ainda falta perder ' +
+              (peso - meta).toString() +
+              'kg para você alcançar sua meta';
+        else
+          mensagem = 'Você atingiu sua meta e está pesando ' +
+              (peso).toString() +
+              'kg!!';
+      }
+    });
   }
 }
