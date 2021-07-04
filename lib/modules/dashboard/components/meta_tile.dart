@@ -23,6 +23,9 @@ class _MetaTileState extends State<MetaTile> {
         child: ScopedModelDescendant<EvolucaoModel>(
             builder: (context, child, model) {
           mensagem = model.mensagem;
+          if (mensagem == null) {
+            mensagem = "Você ainda não possui meta cadastrada.";
+          }
           if (model.isLoading)
             return Center(
               child: CircularProgressIndicator(),

@@ -75,7 +75,9 @@ class _MetaFormState extends State<MetaForm> {
                           textColor: Colors.white,
                           color: Color(0xFFDF9F17),
                           onPressed: () async {
-                            model.addMeta(_metaInputController.text);
+                            double novoValor =
+                                double.parse(_metaInputController.text);
+                            model.addMeta(novoValor);
                             Navigator.of(context).pop();
                           },
                         ),

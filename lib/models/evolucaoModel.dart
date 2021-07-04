@@ -39,24 +39,26 @@ class EvolucaoModel extends Model {
     notifyListeners();
   }
 
+  void alteraMeta(meta, tipoMeta) {
+    Firestore.instance
+        .collection("users")
+        .document(this.uid)
+        .updateData({'meta': meta, 'tipo_meta': tipoMeta});
+    notifyListeners();
+  }
+
   void addMeta(meta) {
-    var tipoMeta;
+    String tipoMeta;
     Firestore.instance
         .collection("users")
         .document(this.uid)
         .get()
         .then((value) => {
               if (value['peso'] > meta)
-                {tipoMeta = 'perda'}
+                {tipoMeta = 'perda', alteraMeta(meta, tipoMeta)}
               else
-                {tipoMeta = 'ganho'}
+                {tipoMeta = 'ganho', alteraMeta(meta, tipoMeta)}
             });
-
-    Firestore.instance
-        .collection("users")
-        .document(this.uid)
-        .updateData({'meta': meta, 'tipo_meta': tipoMeta});
-    notifyListeners();
   }
 
   void removeEvolucao(Evolucao evolucao) {
@@ -96,23 +98,25 @@ class EvolucaoModel extends Model {
       meta = value['meta'];
       tipo = value['tipo_meta'];
       if (tipo == 'ganho') {
-        if (meta > peso)
+        if (meta > peso) {
           mensagem = 'Ainda falta ganhar ' +
               (meta - peso).toString() +
               'kg para você alcançar sua meta';
-        else
+        } else {
           mensagem = 'Você atingiu sua meta e está pesando ' +
               (peso).toString() +
               'kg!!';
+        }
       } else {
-        if (peso > meta)
+        if (peso > meta) {
           mensagem = 'Ainda falta perder ' +
-              (peso - meta).toString() +
+              (peso - meta).toStringAsPrecision(2) +
               'kg para você alcançar sua meta';
-        else
+        } else {
           mensagem = 'Você atingiu sua meta e está pesando ' +
-              (peso).toString() +
+              (peso).toStringAsPrecision(2) +
               'kg!!';
+        }
       }
     });
   }
