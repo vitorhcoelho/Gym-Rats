@@ -102,6 +102,18 @@ class TreinosModel extends Model {
         .collection("treinos")
         .document(treino.id)
         .updateData({'quantidade': treino.quantidade});
+    quantidadeGrupoMuscular(treino);
+    notifyListeners();
+  }
+
+  void quantidadeGrupoMuscular(treino) {
+    Firestore.instance
+        .collection("users")
+        .document(this.uid)
+        .collection("grupoMuscular")
+        .document(treino.grupoMuscular)
+        .setData({'quantidade': treino.quantidade});
+
     notifyListeners();
   }
 }
