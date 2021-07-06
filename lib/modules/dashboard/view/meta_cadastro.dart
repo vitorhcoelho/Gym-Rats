@@ -78,7 +78,7 @@ class _MetaFormState extends State<MetaForm> {
                             double novoValor =
                                 double.parse(_metaInputController.text);
                             model.addMeta(novoValor);
-                            Navigator.of(context).pop();
+                            Navigator.of(context).pushNamed("/dashboard");
                           },
                         ),
                       )

@@ -3,10 +3,8 @@ class GruposMuscularesGrafico {
   final int quantidade;
   GruposMuscularesGrafico(this.nome, this.quantidade);
 
-  GruposMuscularesGrafico.fromMap(Map<String, dynamic> map)
-      : assert(map['nome'] != null),
-        assert(map['quantidade'] != null),
-        nome = map['nome'],
+  GruposMuscularesGrafico.fromMap(Map<String, dynamic> map, nomeMusculo)
+      : nome = nomeMusculo,
         quantidade = map['quantidade'];
 
   @override

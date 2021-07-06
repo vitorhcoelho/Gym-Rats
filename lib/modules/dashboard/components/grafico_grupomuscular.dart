@@ -20,7 +20,7 @@ class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
       charts.Series(
         domainFn: (GruposMuscularesGrafico musculo, _) => musculo.nome,
         measureFn: (GruposMuscularesGrafico musculo, _) => musculo.quantidade,
-        id: 'tasks',
+        id: 'grupoMuscular',
         data: mydata,
         labelAccessorFn: (GruposMuscularesGrafico row, _) =>
             "${row.quantidade}",
@@ -30,7 +30,7 @@ class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tasks')),
+      appBar: AppBar(title: Text('grupoMuscular')),
       body: _buildBody(context),
     );
   }
@@ -47,8 +47,8 @@ class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
           return LinearProgressIndicator();
         } else {
           List<GruposMuscularesGrafico> musculos = snapshot.data.documents
-              .map((documentSnapshot) =>
-                  GruposMuscularesGrafico.fromMap(documentSnapshot.data))
+              .map((documentSnapshot) => GruposMuscularesGrafico.fromMap(
+                  documentSnapshot.data, documentSnapshot.documentID))
               .toList();
           return _buildChart(context, musculos);
         }
