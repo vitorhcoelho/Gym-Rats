@@ -19,34 +19,24 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ScopedModel<EvolucaoModel>(
-        model: EvolucaoModel(Usuario.of(context).firebaseUser),
-        child: ScopedModelDescendant<EvolucaoModel>(
-            builder: (context, child, model) {
-          if (model.isLoading)
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          else
-            return Scaffold(
-              drawerScrimColor: Colors.transparent,
-              drawer: SideMenuDrawer(),
-              backgroundColor: Color(0xFF242424),
-              appBar: AppBar(
-                title: Text('Dashboard'),
-                flexibleSpace: Container(
-                  decoration: BoxDecoration(color: Color(0xFFDF9F17)),
-                ),
-              ),
-              body: GraficoGrupoMuscular(),
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/meta_cadastro');
-                },
-                child: Icon(Icons.add),
-                backgroundColor: Color(0xFFDF9F17),
-              ),
-            );
-        }));
+    return Scaffold(
+      drawerScrimColor: Colors.transparent,
+      drawer: SideMenuDrawer(),
+      backgroundColor: Color(0xFF242424),
+      appBar: AppBar(
+        title: Text('Dashboard'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(color: Color(0xFFDF9F17)),
+        ),
+      ),
+      body: GraficoGrupoMuscular(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed('/meta_cadastro');
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Color(0xFFDF9F17),
+      ),
+    );
   }
 }

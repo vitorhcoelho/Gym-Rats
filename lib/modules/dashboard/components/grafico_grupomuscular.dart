@@ -14,12 +14,15 @@ class GraficoGrupoMuscular extends StatefulWidget {
 class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
   List<charts.Series<GruposMuscularesGrafico, String>> _seriesPieData;
   List<GruposMuscularesGrafico> mydata;
+
   _generateData(mydata) {
-    List<charts.Series<GruposMuscularesGrafico, String>> _seriesPieData;
+    _seriesPieData = List<charts.Series<GruposMuscularesGrafico, String>>();
     _seriesPieData.add(
       charts.Series(
         domainFn: (GruposMuscularesGrafico musculo, _) => musculo.nome,
         measureFn: (GruposMuscularesGrafico musculo, _) => musculo.quantidade,
+        colorFn: (GruposMuscularesGrafico musculo, _) =>
+            charts.ColorUtil.fromDartColor(Color(int.parse(musculo.cor))),
         id: 'grupoMuscular',
         data: mydata,
         labelAccessorFn: (GruposMuscularesGrafico row, _) =>
@@ -30,8 +33,8 @@ class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('grupoMuscular')),
       body: _buildBody(context),
+      backgroundColor: Color(0xFF242424),
     );
   }
 
@@ -46,11 +49,11 @@ class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
         if (!snapshot.hasData) {
           return LinearProgressIndicator();
         } else {
-          List<GruposMuscularesGrafico> musculos = snapshot.data.documents
+          List<GruposMuscularesGrafico> musculo = snapshot.data.documents
               .map((documentSnapshot) => GruposMuscularesGrafico.fromMap(
                   documentSnapshot.data, documentSnapshot.documentID))
               .toList();
-          return _buildChart(context, musculos);
+          return _buildChart(context, musculo);
         }
       },
     );
@@ -66,17 +69,13 @@ class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
         child: Center(
           child: Column(
             children: <Widget>[
-              Text(
-                'Grupos Musculares',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-              ),
               SizedBox(
                 height: 10.0,
               ),
               Expanded(
                 child: charts.PieChart(_seriesPieData,
                     animate: true,
-                    animationDuration: Duration(seconds: 5),
+                    animationDuration: Duration(seconds: 2),
                     behaviors: [
                       new charts.DatumLegend(
                         outsideJustification:
@@ -86,17 +85,19 @@ class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
                         cellPadding: new EdgeInsets.only(
                             right: 4.0, bottom: 4.0, top: 4.0),
                         entryTextStyle: charts.TextStyleSpec(
-                            color: charts.MaterialPalette.purple.shadeDefault,
-                            fontFamily: 'Georgia',
-                            fontSize: 18),
-                      )
+                            color: charts.MaterialPalette.white, fontSize: 14),
+                      ),
                     ],
-                    defaultRenderer: new charts.ArcRendererConfig(
-                        arcWidth: 100,
-                        arcRendererDecorators: [
-                          new charts.ArcLabelDecorator(
-                              labelPosition: charts.ArcLabelPosition.inside)
-                        ])),
+                    defaultRenderer:
+                        new charts.ArcRendererConfig(arcRendererDecorators: [
+                      new charts.ArcLabelDecorator(
+                        labelPosition: charts.ArcLabelPosition.inside,
+                        insideLabelStyleSpec: charts.TextStyleSpec(
+                          fontSize: 20,
+                          color: charts.MaterialPalette.white,
+                        ), //chnage white color as per your requirement.
+                      )
+                    ])),
               ),
             ],
           ),

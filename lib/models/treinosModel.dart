@@ -101,7 +101,9 @@ class TreinosModel extends Model {
         .document(this.uid)
         .collection("treinos")
         .document(treino.id)
-        .updateData({'quantidade': treino.quantidade});
+        .updateData(
+      {'quantidade': treino.quantidade, 'cor': treino.cor},
+    );
     quantidadeGrupoMuscular(treino);
     notifyListeners();
   }
