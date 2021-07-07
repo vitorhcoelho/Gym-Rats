@@ -32,13 +32,6 @@ class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
   }
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildBody(context),
-      backgroundColor: Color(0xFF242424),
-    );
-  }
-
-  Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance
           .collection('users')
@@ -63,44 +56,51 @@ class _GraficoGrupoMuscularState extends State<GraficoGrupoMuscular> {
       BuildContext context, List<GruposMuscularesGrafico> taskdata) {
     mydata = taskdata;
     _generateData(mydata);
-    return Padding(
-      padding: EdgeInsets.all(8.0),
-      child: Container(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 10.0,
+    return Container(
+      width: 400,
+      height: 400,
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 10.0),
+              child: Text(
+                "Gráfico de desempenho",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 22, color: Colors.white),
               ),
-              Expanded(
-                child: charts.PieChart(_seriesPieData,
-                    animate: true,
-                    animationDuration: Duration(seconds: 2),
-                    behaviors: [
-                      new charts.DatumLegend(
-                        outsideJustification:
-                            charts.OutsideJustification.endDrawArea,
-                        horizontalFirst: false,
-                        desiredMaxRows: 2,
-                        cellPadding: new EdgeInsets.only(
-                            right: 4.0, bottom: 4.0, top: 4.0),
-                        entryTextStyle: charts.TextStyleSpec(
-                            color: charts.MaterialPalette.white, fontSize: 14),
-                      ),
-                    ],
-                    defaultRenderer:
-                        new charts.ArcRendererConfig(arcRendererDecorators: [
-                      new charts.ArcLabelDecorator(
-                        labelPosition: charts.ArcLabelPosition.inside,
-                        insideLabelStyleSpec: charts.TextStyleSpec(
-                          fontSize: 20,
-                          color: charts.MaterialPalette.white,
-                        ), //chnage white color as per your requirement.
-                      )
-                    ])),
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Expanded(
+              child: charts.PieChart(_seriesPieData,
+                  animate: true,
+                  animationDuration: Duration(seconds: 2),
+                  behaviors: [
+                    new charts.DatumLegend(
+                      outsideJustification:
+                          charts.OutsideJustification.endDrawArea,
+                      horizontalFirst: false,
+                      desiredMaxRows: 2,
+                      cellPadding: new EdgeInsets.only(
+                          right: 4.0, bottom: 4.0, top: 4.0),
+                      entryTextStyle: charts.TextStyleSpec(
+                          color: charts.MaterialPalette.white, fontSize: 14),
+                    ),
+                  ],
+                  defaultRenderer:
+                      new charts.ArcRendererConfig(arcRendererDecorators: [
+                    new charts.ArcLabelDecorator(
+                      labelPosition: charts.ArcLabelPosition.inside,
+                      insideLabelStyleSpec: charts.TextStyleSpec(
+                        fontSize: 20,
+                        color: charts.MaterialPalette.white,
+                      ), //chnage white color as per your requirement.
+                    )
+                  ])),
+            ),
+          ],
         ),
       ),
     );

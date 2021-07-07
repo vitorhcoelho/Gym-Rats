@@ -52,10 +52,13 @@ class _MetaTileState extends State<MetaTile> {
                         ),
                       ],
                     ),
-                    child: Text(
-                      mensagem,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        mensagem,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16, color: Colors.white),
+                      ),
                     ),
                   ),
                 ),

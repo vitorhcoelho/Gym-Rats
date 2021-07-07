@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gym_rats/models/evolucao.dart';
-import 'package:gym_rats/models/grupoMuscularGrafico.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class EvolucaoModel extends Model {
