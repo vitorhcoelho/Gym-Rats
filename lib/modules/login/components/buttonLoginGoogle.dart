@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ButtonLogin extends StatefulWidget {
+class ButtonLoginGoogle extends StatefulWidget {
   final String buttonText;
 
-  ButtonLogin({
+  ButtonLoginGoogle({
     @required this.buttonText,
-    Null Function() Function() onPressed,
   });
 
   @override
-  _ButtonLoginState createState() => _ButtonLoginState();
+  _ButtonLoginGoogleState createState() => _ButtonLoginGoogleState();
 }
 
-class _ButtonLoginState extends State<ButtonLogin> {
+class _ButtonLoginGoogleState extends State<ButtonLoginGoogle> {
   String _buttonText;
 
   @override
@@ -36,7 +35,7 @@ class _ButtonLoginState extends State<ButtonLogin> {
               padding: EdgeInsets.all(0.0),
               onPressed: () {},
               child: Ink(
-                color: Color(0xFFDF9F17),
+                color: Color(0xFFB53A3A),
                 child: Container(
                   constraints: BoxConstraints(
                       maxWidth: MediaQuery.of(context).size.width * 0.80,
@@ -50,7 +49,7 @@ class _ButtonLoginState extends State<ButtonLogin> {
                         child: Text(
                           _buttonText,
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.black, fontSize: 16.0),
+                          style: TextStyle(color: Colors.white, fontSize: 16.0),
                         ),
                       ),
                     ],

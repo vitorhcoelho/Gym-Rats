@@ -19,7 +19,6 @@ class _ComponentsTextFieldState extends State<ComponentsTextField> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _hintTextField = widget.hintTextField;
     _iconTextField = widget.iconTextField;
@@ -34,22 +33,22 @@ class _ComponentsTextFieldState extends State<ComponentsTextField> {
             horizontal: MediaQuery.of(context).size.width * 0.10,
           ),
           child: TextFormField(
-            style: TextStyle(color: Colors.black54),
+            style: TextStyle(color: Color(0xFF979797)),
             decoration: InputDecoration(
-              focusColor: Color(0xffff7700),
-              labelStyle: TextStyle(color: Color(0xffff7700)),
+              focusColor: Color(0xFF979797),
+              labelStyle: TextStyle(color: Color(0xFF979797)),
               enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                color: Color(0xffff7700),
+                color: Color(0xFF979797),
               )),
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                color: Color(0xffff7700),
+                color: Color(0xFF979797),
               )),
               labelText: _hintTextField,
               prefixIcon: Icon(
                 _iconTextField,
-                color: Color(0xffff7700),
+                color: Color(0xFFDF9F17),
               ),
               //suffixIcon: Icon();
             ),
