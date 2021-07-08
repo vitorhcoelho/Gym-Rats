@@ -124,7 +124,7 @@ class _EvolucaoFormState extends State<EvolucaoForm> {
                               "descricao": _descricaoInputController.text
                             };
                             model.addEvolucao(evolucao);
-                            Navigator.of(context).pop();
+                            Navigator.of(context).pushNamed('/evolucao');
                           },
                         ),
                       )
