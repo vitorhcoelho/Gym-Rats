@@ -8,6 +8,7 @@ class Treinos {
   String series;
   String descanso;
   String dia;
+  int quantidade;
 
   Treinos();
 
@@ -19,5 +20,6 @@ class Treinos {
     series = document.data["series"];
     descanso = document.data["descanso"];
     dia = document.data["dia"];
+    quantidade = document.data["quantidade"];
   }
 }

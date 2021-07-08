@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gym_rats/modules/dashboard/view/dashboard.dart';
 import 'package:gym_rats/modules/evolution/view/evolucao.dart';
 import 'package:gym_rats/modules/home/view/home_page.dart';
 import 'package:gym_rats/modules/login/view/login_page.dart';
@@ -6,6 +8,7 @@ import 'package:gym_rats/modules/training/view/new_training.dart';
 import 'package:gym_rats/modules/training/view/training_form.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'models/usuariosModel.dart';
+import 'modules/dashboard/view/meta_cadastro.dart';
 import 'modules/evolution/view/evolucao_cadastro.dart';
 import 'modules/sign_up/view/sign_up_page.dart';
 
@@ -39,6 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return ScopedModel<Usuario>(
       model: Usuario(),
       child: MaterialApp(
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
+        supportedLocales: [const Locale('pt', 'BR')],
         initialRoute: '/login',
         routes: {
           // ignore: missing_required_param
@@ -48,7 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
           '/training_form': (context) => TrainingForm(),
           '/evolucao': (context) => EvolucaoPage(),
           '/evolucao_cadastro': (context) => EvolucaoForm(),
-          '/': (context) => HomePage(),
+          '/home': (context) => HomePage(),
+          '/dashboard': (context) => DashboardPage(),
+          '/meta_cadastro': (context) => MetaForm(),
         },
       ),
     );

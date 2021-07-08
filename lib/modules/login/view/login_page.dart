@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _onSuccess() {
     Future.delayed(Duration(seconds: 2)).then((_) {
-      Navigator.of(context).pop();
+      Navigator.of(context).pushNamed('/home');
     });
   }
 
