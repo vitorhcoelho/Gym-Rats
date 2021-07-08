@@ -38,20 +38,23 @@ class _EvolucaoPageState extends State<EvolucaoPage> {
             decoration: BoxDecoration(color: Color(0xFFDF9F17)),
           ),
         ),
-        body: FutureBuilder<QuerySnapshot>(
-            future: Firestore.instance
-                .collection("users")
-                .document(model.firebaseUser.uid)
-                .collection("evolucao")
-                .getDocuments(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData)
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              else
-                return _ActivityTimeline(snapshot.data.documents);
-            }),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 40.0, 0, 0),
+          child: FutureBuilder<QuerySnapshot>(
+              future: Firestore.instance
+                  .collection("users")
+                  .document(model.firebaseUser.uid)
+                  .collection("evolucao")
+                  .getDocuments(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData)
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                else
+                  return _ActivityTimeline(snapshot.data.documents);
+              }),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).pushNamed('/evolucao_cadastro');
@@ -113,13 +116,13 @@ class _ActivityTimelineState extends State<_ActivityTimeline> {
           hour: evolucoes.data,
           type: Type.checkpoint,
           message: evolucoes.peso + '\n' + evolucoes.descricao,
-          color: Colors.orange,
+          color: Color(0xFFDF9F17),
         ),
       );
       lista.add(
         Step(
           type: Type.line,
-          color: Colors.orange,
+          color: Color(0xFFDF9F17),
         ),
       );
     }
@@ -155,14 +158,14 @@ class _TimelineActivity extends StatelessWidget {
           alignment: TimelineAlign.manual,
           isFirst: index == 0,
           isLast: index == steps.length - 1,
-          lineXY: 0.25,
+          lineXY: 0.30,
           indicatorStyle: indicator,
           startChild: leftChild,
           endChild: righChild,
           hasIndicator: step.isCheckpoint,
           beforeLineStyle: LineStyle(
             color: step.color,
-            thickness: 8,
+            thickness: 5,
           ),
         );
       },
@@ -199,9 +202,6 @@ class _RightChildTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final double minHeight =
-    //     step.isCheckpoint ? 100 : step.duration.toDouble() * 8;
-
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: 0),
       child: Column(
@@ -216,15 +216,10 @@ class _RightChildTimeline extends StatelessWidget {
                 TextSpan(
                   text: step.message,
                   style: TextStyle(
-                    color: Colors.white,
+                    fontSize: 16,
+                    color: Colors.white.withOpacity(0.6),
                   ),
                 ),
-                // TextSpan(
-                //   text: '  ${step.duration} min',
-                //   style: TextStyle(
-                //     color: const Color(0xFFF2F2F2),
-                //   ),
-                // )
               ]),
             ),
           )
@@ -245,7 +240,7 @@ class _LeftChildTimeline extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.only(right: step.isCheckpoint ? 10 : 29),
+          padding: EdgeInsets.only(right: step.isCheckpoint ? 10 : 29, top: 18),
           child: Text(
             step.hour,
             textAlign: TextAlign.center,

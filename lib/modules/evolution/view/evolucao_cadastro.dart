@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_rats/models/evolucaoModel.dart';
 import 'package:gym_rats/models/usuariosModel.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class EvolucaoForm extends StatefulWidget {
@@ -9,6 +10,8 @@ class EvolucaoForm extends StatefulWidget {
 }
 
 class _EvolucaoFormState extends State<EvolucaoForm> {
+  var maskFormatter = new MaskTextInputFormatter(
+      mask: '##/##/##', filter: {"#": RegExp(r'[0-9]')});
   TextEditingController _dataInputController = TextEditingController();
   TextEditingController _pesoInputController = TextEditingController();
   TextEditingController _descricaoInputController = TextEditingController();
@@ -43,6 +46,7 @@ class _EvolucaoFormState extends State<EvolucaoForm> {
                   child: Column(
                     children: <Widget>[
                       TextFormField(
+                          inputFormatters: [maskFormatter],
                           style: TextStyle(color: Color(0xFF979797)),
                           decoration: InputDecoration(
                             focusColor: Color(0xFF979797),

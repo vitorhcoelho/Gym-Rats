@@ -59,6 +59,8 @@ class EvolucaoModel extends Model {
               else
                 {tipoMeta = 'ganho', alteraMeta(meta, tipoMeta)}
             });
+
+    notifyListeners();
   }
 
   void removeEvolucao(Evolucao evolucao) {

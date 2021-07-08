@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:gym_rats/models/grupoMuscularGrafico.dart';
 import 'package:gym_rats/models/treinos.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -102,19 +103,28 @@ class TreinosModel extends Model {
         .collection("treinos")
         .document(treino.id)
         .updateData(
-      {'quantidade': treino.quantidade, 'cor': treino.cor},
+      {'quantidade': treino.quantidade},
     );
-    quantidadeGrupoMuscular(treino);
+    acharGrupoMuscularCor(treino);
     notifyListeners();
   }
 
-  void quantidadeGrupoMuscular(treino) {
+  void acharGrupoMuscularCor(treino) {
+    Firestore.instance
+        .collection("grupoMuscular")
+        .where('nome', isEqualTo: treino.grupoMuscular)
+        .getDocuments()
+        .then((value) => quantidadeGrupoMuscular(
+            treino, GruposMusculares.fromDocument(value.documents[0]).cor));
+  }
+
+  void quantidadeGrupoMuscular(treino, cor) {
     Firestore.instance
         .collection("users")
         .document(this.uid)
         .collection("grupoMuscular")
         .document(treino.grupoMuscular)
-        .setData({'quantidade': treino.quantidade});
+        .setData({'quantidade': treino.quantidade, 'cor': cor});
 
     notifyListeners();
   }

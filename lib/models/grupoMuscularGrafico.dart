@@ -6,7 +6,6 @@ class GruposMuscularesGrafico {
 
   GruposMuscularesGrafico.fromMap(Map<String, dynamic> map, nomeMusculo)
       : assert(map['quantidade'] != null),
-        assert(map['cor'] != null),
         nome = nomeMusculo,
         quantidade = map['quantidade'],
         cor = map['cor'];
